@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Add People</h1>
+        <h1>Add Rioters</h1>
 
         <br><br>
 
@@ -56,6 +56,12 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td>Status: </td>
+                    <td>
+                        <input type="text" name="status" value="alive">
+                    </td>
+                </tr>
 
                 <tr>
                     <td>Choose a Universe:</td>
@@ -118,14 +124,16 @@
             {
                 $name = mysqli_real_escape_string($conn, $_POST['name']);
                 $id_universe = $_POST['id_universe'];
+                $status = mysqli_real_escape_string($conn, $_POST['status']);
                 $qty = $_POST['qty'];
                 
 
                 for ($i = 0; $i < $qty; $i++) {
 
-                    $sql2 = "INSERT INTO people SET
+                    $sql2 = "INSERT INTO rioter SET
                     name='$name',
-                    id_universe='$id_universe'
+                    id_universe='$id_universe',
+                    status='$status'
                     ";
 
 
@@ -133,13 +141,13 @@
 
                     if ($res2)
                     {
-                        $_SESSION['add'] = "<div class='success'>People Added Successfully</div>";
-                        header('location:'.SITEURL.'admin/manage-people.php');
+                        $_SESSION['add'] = "<div class='success'>Rioters Added Successfully</div>";
+                        header('location:'.SITEURL.'admin/manage-rioters.php');
                     }
                     else 
                     {
-                        $_SESSION['add'] = "<div class='error'>Failed to add People</div>";
-                        header('location:'.SITEURL.'admin/add-people.php');
+                        $_SESSION['add'] = "<div class='error'>Failed to add Rioters</div>";
+                        header('location:'.SITEURL.'admin/add-rioters.php');
                     }
                 }
             }
