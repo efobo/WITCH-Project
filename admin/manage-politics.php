@@ -9,7 +9,7 @@
                 </div>
             </a>
             
-            <a href="<?php echo SITEURL;?>admin/manage-people.php">
+            <a href="<?php echo SITEURL;?>admin/manage-riots.php">
                 <div class="col-4 text-center">
                     <h1>Riots</h1>
                 </div>

@@ -185,7 +185,7 @@
             </table>
 
         </form>
-        <!-- Add People Form Ends -->
+        <!-- Quell Riot Form Ends -->
 
 
         <?php
@@ -200,6 +200,7 @@
                         header('location:'.SITEURL.'admin/start-battle.php');
                 }
                 $battle_id_location = $_POST['id_location'];
+                // Находим name у location и battle_id_universe 
                 $sql4 = "SELECT * FROM location WHERE id=$battle_id_location";
                 $res4 = mysqli_query($conn, $sql4);
                 $count4 = mysqli_num_rows($res4);
@@ -207,21 +208,37 @@
                 {
                     $row4 = mysqli_fetch_assoc($res4);
                     $battle_id_universe = $row4['id_universe'];
+                    $battle_location = $row4['name'];
                 }
                 else
                 {
                     $_SESSION['msg'] = "<div class='error'>Some error with battle id universe</div>";
                     header('location:'.SITEURL.'admin/start-battle.php');
                 }
+
+                // Находим name у battle_id_universe 
+                $sql12 = "SELECT * FROM universe WHERE id=$battle_id_universe";
+                $res12 = mysqli_query($conn, $sql12);
+                $count12 = mysqli_num_rows($res12);
+                if ($count12 == 1)
+                {
+                    $row12 = mysqli_fetch_assoc($res12);
+                    $battle_universe = $row12['name'];
+                }
+                else
+                {
+                    $_SESSION['msg'] = "<div class='error'>Some error with battle universe</div>";
+                    header('location:'.SITEURL.'admin/start-battle.php');
+                }
                 
 
                 $id_ruler_started = $_SESSION['id'];
                 $id_universe_started = $_SESSION['id_universe'];
+                $ruler_started = $_SESSION['name'];
                 $id_ruler_victim = $_POST['id_ruler_victim'];
 
 
                 // Находим id universe у victim
-                // Здесь какая-то хуйня
                 $sql7 = "SELECT * FROM ruler WHERE id=$id_ruler_victim";
                 $res7 = mysqli_query($conn, $sql7);
                 $count7 = mysqli_num_rows($res7);
@@ -229,12 +246,44 @@
                 {
                     $row7 = mysqli_fetch_assoc($res7);
                     $id_universe_victim = $row7['id_universe'];
+                    $ruler_victim = $row7['name'];
                 }
                 else
                 {
                     $_SESSION['msg'] = "<div class='error'>Some error with id universe victim</div>";
                     header('location:'.SITEURL.'admin/start-battle.php');
                 }
+
+                // Находим universe name у victim
+                $sql10 = "SELECT * FROM universe WHERE id=$id_universe_victim";
+                $res10 = mysqli_query($conn, $sql10);
+                $count10 = mysqli_num_rows($res10);
+                if ($count10 == 1)
+                {
+                    $row10 = mysqli_fetch_assoc($res10);
+                    $universe_victim = $row10['name'];
+                }
+                else
+                {
+                    $_SESSION['msg'] = "<div class='error'>Some error with universe name victim</div>";
+                    header('location:'.SITEURL.'admin/start-battle.php');
+                }
+
+                // Находим universe name у started
+                $sql11 = "SELECT * FROM universe WHERE id=$id_universe_started";
+                $res11 = mysqli_query($conn, $sql11);
+                $count11 = mysqli_num_rows($res11);
+                if ($count11 == 1)
+                {
+                    $row11 = mysqli_fetch_assoc($res11);
+                    $universe_started = $row11['name'];
+                }
+                else
+                {
+                    $_SESSION['msg'] = "<div class='error'>Some error with universe name started</div>";
+                    header('location:'.SITEURL.'admin/start-battle.php');
+                }
+
                 
                 // Находим кол-во army у victim
                 $sql8 = "SELECT * FROM army WHERE id_universe=$id_universe_victim";
@@ -263,7 +312,7 @@
                     else if ($deceased_mood == 1)
                     {
                         $deceased_percent = rand(1, 50);
-                        $deceased_started = round($qty_soldiers - ($qty_soldiers*$deceased_percent/100));
+                        $deceased_started = round($qty_soldiers*$deceased_percent/100);
 
                         $sql10 = "DELETE FROM army WHERE id_universe=$id_universe_started LIMIT $deceased_started";
                         $res10 = mysqli_query($conn, $sql10);
@@ -280,7 +329,7 @@
                         if ($deceased_mood == 1)
                         {
                             $deceased_percent = rand(1, 10);
-                            $deceased_victim = round($army_victim - ($army_victim*$deceased_percent/100));
+                            $deceased_victim = round($army_victim*$deceased_percent/100);
                             
                             $sql10 = "DELETE FROM army WHERE id_universe=$id_universe_victim LIMIT $deceased_victim";
                             $res10 = mysqli_query($conn, $sql10);
@@ -372,9 +421,9 @@
                     }
 
                     $deceased_mood = rand(0, 100);
-                    $deceased_started = round($qty_soldiers - ($qty_soldiers*$deceased_mood/100));
+                    $deceased_started = round($qty_soldiers*$deceased_mood/100);
                     $deceased_mood = rand (0, 100);
-                    $deceased_victim = round($army_victim - ($army_victim*$deceased_mood/100));
+                    $deceased_victim = round($army_victim*$deceased_mood/100);
 
                     $sql10 = "DELETE FROM army WHERE id_universe=$id_universe_started LIMIT $deceased_started";
                     $res10 = mysqli_query($conn, $sql10);
@@ -404,15 +453,31 @@
                 $res9 = mysqli_query($conn, $sql9);
                 if ($res9)
                 {
-                    echo "<script>alert('Success')</script>";
+                    
                     if ($id_ruler_started == $id_ruler_who_win)
                     {
                         $_SESSION['battle'] = "<div>Congratulations on your victory! Your army has lost $deceased_started fighters. The opponent's army lost $deceased_victim fighters.</div>";
+                        $news_text = "$ruler_started from the planet $universe_started attacked the $ruler_victim from the planet $universe_victim and WON! The battle took place in a $battle_location on planet $battle_universe. During the battle, the army of $ruler_started lost $deceased_started fighters. The $ruler_victim Army lost $deceased_victim fighters.";
                     }
                     else
                     {
                         $_SESSION['battle'] = "<div>Oh no, you've failed! Your army has lost $deceased_started fighters. The opponent's army lost $deceased_victim fighters.</div>";
+                        $news_text = "$ruler_started from the planet $universe_started attacked the $ruler_victim from the planet $universe_victim and LOST! The battle took place in a $battle_location on planet $battle_universe. During the battle, the army of $ruler_started lost $deceased_started fighters. The $ruler_victim Army lost $deceased_victim fighters.";
                     }
+
+                    $news_title = "$ruler_started vs $ruler_victim. WAR!";
+                    $news_date = date("Y-m-d h:i:s");                  
+
+                    $sql13 = "INSERT INTO news SET
+                    news_date='$news_date',
+                    title='$news_title',
+                    text='$news_text'";
+                    $res13 = mysqli_query($conn, $sql13);
+                    if (!$res13)
+                    {
+                        $_SESSION['news'] = "<div class='error'>The event was not added to the news</div>";
+                    }
+
                     
                 }
                 else

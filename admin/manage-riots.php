@@ -3,7 +3,7 @@
 <!-- Main Content Section Starts -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Rioters</h1>
+        <h1>History of Riots</h1>
         <br><br>
 
         <?php
@@ -36,30 +36,21 @@
         <br><br>
 
         <!-- Button to Add Army -->
-        <a href="<?php echo SITEURL; ?>admin/add-rioter.php" class="btn-primary">Add Rioters</a>
+        <a href="<?php echo SITEURL; ?>admin/quell-riot.php" class="btn-primary">Quell the Riot</a>
 
         <br><br><br>
 
         <table class="tbl-full">
             <tr>
                 <th>№</th>
-                <th>Name</th>
-                <th>Universe</th>
-                <th>Actions</th>
+                <th>Place</th>
+                <th>Deceased army</th>
+                <th>Deceased rioters</th>
+                <th>Who won</th>
             </tr>
             <?php
-
-                if (isset($_GET['id_univ'])) 
-                {
-                    $id_univ = $_GET['id_univ'];
-                    $sql = "SELECT * FROM rioter WHERE id_universe=$id_univ";
-                }
-                else
-                {
-                    $sql = "SELECT * FROM rioter";
-                }
-            
-            
+            $id_universe = $_SESSION['id_universe'];
+            $sql = "SELECT * FROM riot WHERE id_universe=$id_universe";
 
             $res = mysqli_query($conn, $sql);
 
@@ -71,34 +62,33 @@
             {
                 while ($row = mysqli_fetch_assoc($res))
                 {
+                    
                     $id = $row['id'];
-                    $name = $row['name'];
-                    $id_universe = $row['id_universe'];
+                    $id_location = $row['id_location'];
+                    $deceased_army = $row['deceased_army'];
+                    $deceased_rioters = $row['deceased_rioters'];
+                    $who_win = $row['who_win'];
 
-                    $sql2 = "SELECT * FROM universe WHERE id=$id_universe";
+                    $sql2 = "SELECT * FROM location WHERE id=$id_location";
                     $res2 = mysqli_query($conn, $sql2);
                     $count2 = mysqli_num_rows($res2);
                     if ($count2 == 1)
                     {
                         $row2 = mysqli_fetch_assoc($res2);
-                        $universe = $row2['name'];
+                        $location = $row2['name'];
                     }
                     else
                     {
-                        $universe = "unknown";
+                        $location = "unknown";
                     }
-                   
                     ?>
 
                         <tr>
                             <td><?php echo $sn++; ?></td>
-                            <td width='30%'><?php echo $name; ?></td>
-                            <td><?php echo $universe; ?></td>
-                            <td>
-                                <a href="<?php echo SITEURL;?>admin/update-rioter.php?id=<?php echo $id; ?>" class="btn-secondary">Update</a>
-                                <a href="<?php echo SITEURL;?>admin/delete-rioter.php?id=<?php echo $id; ?>" class="btn-danger">Delete</a>
-                                
-                            </td>
+                            <td width='30%'><?php echo $location; ?></td>
+                            <td><?php echo $deceased_army; ?></td>
+                            <td><?php echo $deceased_rioters; ?></td>
+                            <td><?php echo $who_win; ?></td>
                         </tr>
 
                     <?php
@@ -106,7 +96,7 @@
             }
             else
             {
-                echo "<tr> <td colspan='7' class='error'>Rioters not Added Yet</td> </tr>";
+                echo "<tr> <td colspan='7' class='error'>Not a single riot has been suppressed yet</td> </tr>";
             }
         ?>
         </table>
