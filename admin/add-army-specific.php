@@ -59,45 +59,43 @@
                             {
                                 while ($row = mysqli_fetch_assoc($res))
                                 {
-                                    $status = $row['status'];
-                                    if ($status == "alive") {
-                                        $id = $row['id'];
-                                        $name = $row['name'];
-                                        $id_universe = $row['id_universe'];
+                                    $id = $row['id'];
+                                    $name = $row['name'];
+                                    $id_universe = $row['id_universe'];
 
-                                        $sql2 = "SELECT * FROM universe WHERE id=$id_universe";
-                                        $res2 = mysqli_query($conn, $sql2);
-                                        $count2 = mysqli_num_rows($res2);
-                                        if ($count2 == 1)
-                                        {
-                                            $row2 = mysqli_fetch_assoc($res2);
-                                            $universe = $row2['name'];
-                                        }
-                                        else
-                                        {
-                                            $universe = "Unknown Universe";
-                                        }
-
-                                        ?>
-
-                                        <option value="<?php echo $id; ?>">
-                                            <?php echo $name.'('.$universe.')'; ?>
-                                        </option>
-
-                                        <?php
+                                    $sql2 = "SELECT * FROM universe WHERE id=$id_universe";
+                                    $res2 = mysqli_query($conn, $sql2);
+                                    $count2 = mysqli_num_rows($res2);
+                                    if ($count2 == 1)
+                                    {
+                                        $row2 = mysqli_fetch_assoc($res2);
+                                        $universe = $row2['name'];
                                     }
+                                    else
+                                    {
+                                        $universe = "Unknown Universe";
+                                    }
+
+                                    ?>
+
+                                    <option value="<?php echo $id; ?>">
+                                        <?php echo $name.'('.$universe.')'; ?>
+                                    </option>
+
+                                    <?php
                                 }
+                            
                             }
                             else 
                             {
-                                ?>
+                            ?>
 
-                                <option value="0">No People Found</option>
-                                
-                                <?php
-                                
-                            }
-                        ?>
+                            <option value="0">No People Found</option>
+                            
+                            <?php
+                            
+                        }
+                    ?>
 
                         </select>
                     </td>
@@ -131,12 +129,10 @@
                     $row3 = mysqli_fetch_assoc($res3);
                     $id_universe = $row3['id_universe'];
                     $name = $row3['name'];
-                    $status = $row3['status'];
 
                     $sql4 = "INSERT INTO army SET
                     name='$name',
-                    id_universe=$id_universe,
-                    status='$status'";
+                    id_universe=$id_universe";
 
                     $res4 = mysqli_query($conn, $sql4);
 

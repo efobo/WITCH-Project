@@ -75,7 +75,7 @@
 
             if ($count == 1)
             {
-                $_SESSION['login'] = "<div class='success'>Login Successful</div>";
+                
                 $_SESSION['user'] = $username;
                 $_SESSION['status'] = $status;
 
@@ -83,6 +83,7 @@
                 $_SESSION['id'] = $rows['id'];
                 $_SESSION['name'] = $rows['name'];
                 $_SESSION['id_universe'] = $rows['id_universe'];
+                
 
                 header('location:'.SITEURL.'admin/');
             }

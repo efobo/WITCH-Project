@@ -32,6 +32,12 @@
                 unset($_SESSION['unauthorize']);
             }
 
+            if (isset($_SESSION['no-adviser-found']))
+            {
+                echo $_SESSION['no-adviser-found'];
+                unset($_SESSION['no-adviser-found']);
+            }
+
         ?>
         <br><br>
 

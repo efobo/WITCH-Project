@@ -32,6 +32,12 @@
                 unset($_SESSION['unauthorize']);
             }
 
+            if (isset($_SESSION['no-location-found']))
+            {
+                echo $_SESSION['no-location-found'];
+                unset($_SESSION['no-location-found']);
+            }
+
         ?>
         <br><br>
 

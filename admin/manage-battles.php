@@ -183,7 +183,7 @@
             }
             else
             {
-                echo "<tr> <td colspan='7' class='error'>People not Added Yet</td> </tr>";
+                echo "<tr> <td colspan='7' class='error'>Not a single battle has been fought yet</td> </tr>";
             }
         ?>
         </table>

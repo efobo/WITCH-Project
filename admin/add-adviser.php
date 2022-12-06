@@ -126,8 +126,7 @@
                 $id_universe = $_POST['id_universe'];
                 $username = mysqli_real_escape_string($conn, $_POST['username']);
                 $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-                echo $name;
-                echo $id_universe;
+                
                 
 
                 $sql2 = "INSERT INTO adviser SET
