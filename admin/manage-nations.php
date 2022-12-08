@@ -4,19 +4,19 @@
         <div class="main-content">
             <div class="wrapper">
             <a href="<?php echo SITEURL;?>admin/manage-army.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                     <h1>Army</h1>
                 </div>
             </a>
             
             <a href="<?php echo SITEURL;?>admin/manage-people.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                     <h1>Population</h1>
                 </div>
             </a>
             
             <a href="<?php echo SITEURL;?>admin/manage-rioters.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                 <h1>Rioters</h1>
                 </div>
             </a>

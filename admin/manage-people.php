@@ -45,7 +45,6 @@
                 <th>№</th>
                 <th>Name</th>
                 <th>Universe</th>
-                <th>Status</th>
                 <th>Actions</th>
             </tr>
             <?php
@@ -75,7 +74,6 @@
                     $id = $row['id'];
                     $name = $row['name'];
                     $id_universe = $row['id_universe'];
-                    $status = $row['status'];
 
                     $sql2 = "SELECT * FROM universe WHERE id=$id_universe";
                     $res2 = mysqli_query($conn, $sql2);
@@ -96,7 +94,6 @@
                             <td><?php echo $sn++; ?></td>
                             <td width='30%'><?php echo $name; ?></td>
                             <td><?php echo $universe; ?></td>
-                            <td><?php echo $status; ?></td>
                             <td>
                                 <a href="<?php echo SITEURL;?>admin/update-people.php?id=<?php echo $id; ?>" class="btn-secondary">Update</a>
                                 <a href="<?php echo SITEURL;?>admin/delete-people.php?id=<?php echo $id; ?>" class="btn-danger">Delete</a>

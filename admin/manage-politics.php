@@ -4,13 +4,13 @@
         <div class="main-content">
             <div class="wrapper">
             <a href="<?php echo SITEURL;?>admin/manage-battles.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                     <h1>Battles</h1>
                 </div>
             </a>
             
             <a href="<?php echo SITEURL;?>admin/manage-riots.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                     <h1>Riots</h1>
                 </div>
             </a>

@@ -115,7 +115,6 @@
                             <td><?php echo $universe; ?></td>
                             <td><?php echo $created_by; ?></td>
                             <td>
-                                <a href="<?php echo SITEURL;?>admin/update-portal.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-secondary">Update</a>
                                 <a href="<?php echo SITEURL;?>admin/delete-portal.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete</a>
                                 
                             </td>

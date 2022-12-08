@@ -12,24 +12,35 @@
             {
                 echo $_SESSION['add'];
                 unset($_SESSION['add']);
+                echo "<br><br>";
             }
 
             if (isset($_SESSION['delete']))
             {
                 echo $_SESSION['delete'];
                 unset($_SESSION['delete']);
+                echo "<br><br>";
             }
 
             if (isset($_SESSION['update']))
             {
                 echo $_SESSION['update'];
                 unset($_SESSION['update']);
+                echo "<br><br>";
             }
 
             if (isset($_SESSION['unauthorize']))
             {
                 echo $_SESSION['unauthorize'];
                 unset($_SESSION['unauthorize']);
+                echo "<br><br>";
+            }
+
+            if (isset($_SESSION['no-guardian-found']))
+            {
+                echo $_SESSION['no-guardian-found'];
+                unset($_SESSION['no-guardian-found']);
+                echo "<br><br>";
             }
 
         ?>
@@ -46,6 +57,7 @@
                 <th>Name</th>
                 <th>Magical abilities</th>
                 <th>Universe</th>
+                <th>More info</th>
                 <th>username</th>
                 <th>Actions</th>
             </tr>
@@ -67,6 +79,7 @@
                     $name = $row['name'];
                     $username = $row['username'];
                     $magical_abilities = $row['magical_abilities'];
+                    $more_info = $row['more_info'];
                     $id_universe = $row['id_universe'];
 
                     $sql2 = "SELECT * FROM universe WHERE id=$id_universe";
@@ -89,6 +102,7 @@
                             <td width='30%'><?php echo $name; ?></td>
                             <td><?php echo $magical_abilities; ?></td>
                             <td><?php echo $universe; ?></td>
+                            <td><?php echo $more_info; ?></td>
                             <td><?php echo $username; ?></td>
 
                             <td>

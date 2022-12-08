@@ -60,7 +60,7 @@
                 <tr>
                     <td>Enter the Quantity: </td>
                     <td>
-                        <input type="number" name="qty" value="10" min="1" max="<?php echo $people_qty; ?>">
+                        <input type="number" name="qty" value="<?php if ($people_qty >= 10) echo 10; else echo $people_qty; ?>" min="1" max="<?php echo $people_qty; ?>">
                     </td>
                 </tr>
                 <tr>

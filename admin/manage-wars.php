@@ -30,13 +30,13 @@
                 }
             ?>
             <a href="<?php echo SITEURL;?>admin/start-battle.php">
-                <div style="width: 20%;" class="col-4 text-center" >
+                <div style="width: 20%;" class="col-3 text-center" >
                     <h1>Start the Battle</h1>
                 </div>
             </a>
             
             <a href="<?php echo SITEURL;?>admin/quell-riot.php">
-                <div class="col-4 text-center">
+                <div class="col-3 text-center">
                     <h1>Quell the Riot</h1>
                 </div>
             </a>
