@@ -2,55 +2,46 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Add Adviser</h1>
+        <h1>Add Location</h1>
 
         <br><br>
 
         <?php 
-  
-            if ($_SESSION['status'] != "ruler")
+            
+            if ($_SESSION['status'] != "guardian")
             {
-                echo "<div>Sorry, you don't have access to change this data. Ask one of the ruler for this</div>";
+                echo "<div>Sorry, you don't have access to change this data. Ask one of the guards for this</div>";
             }
             else
             { 
-        
-                if (isset($_SESSION['msg']))
-                {
-                    echo $_SESSION['msg'];
-                    echo '<br><br>';
-                    unset($_SESSION['msg']);
-                }
-
-                if (isset($_SESSION['add']))
-                {
-                    echo $_SESSION['add'];
-                    echo '<br><br>';
-                    unset($_SESSION['add']);
-                }
-
-                if (isset($_SESSION['upload']))
-                {
-                    echo $_SESSION['upload'];
-                    echo '<br><br>';
-                    unset($_SESSION['upload']);
-                }
         ?>
 
-
-        <!-- Add People Form Starts -->
         <form action="" method="POST" enctype="multipart/form-data">
 
             <table class="tbl-30">
                 <tr>
                     <td>Name: </td>
                     <td>
-                        <input type="text" name="name" placeholder="Name">
+                        <input type="text" name="name" placeholder="Name of Location">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Choose a Universe:</td>
+                    <td>X Coordinate: </td>
+                    <td>
+                        <input type="number" name="x_cord" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Y Coordinate: </td>
+                    <td>
+                        <input type="number" name="y_cord" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Select Universe: </td>
                     <td>
                         <select name="id_universe">
                         <?php
@@ -92,65 +83,49 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td>Username: </td>
-                    <td>
-                        <input type="text" name="username" placeholder="username">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Password: </td>
-                    <td>
-                        <input type="password" name="password" placeholder="Password">
-                    </td>
-                </tr>
-
 
                 <tr>
                     <td colspan="2">
-                        <input type="submit" name="submit" value="Add Adviser" class="btn-danger">
+                        <input type="submit" name="submit" value="Add Location" class="btn-danger">
                     </td>
                 </tr>
             </table>
-
         </form>
-        <!-- Add People Form Ends -->
-
 
         <?php
-        
+
             if (isset($_POST['submit']))
             {
                 $name = mysqli_real_escape_string($conn, $_POST['name']);
+                $x_cord = $_POST['x_cord'];
+                $y_cord = $_POST['y_cord'];
                 $id_universe = $_POST['id_universe'];
-                $username = mysqli_real_escape_string($conn, $_POST['username']);
-                $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-                
-                
 
-                $sql2 = "INSERT INTO adviser SET
+
+                $sql2 = "INSERT INTO location SET
                 name='$name',
-                id_universe='$id_universe',
-                username='$username',
-                password='$password'
+                x_cords=$x_cord,
+                y_cords=$y_cord,
+                id_universe='$id_universe'
                 ";
 
                 $res2 = mysqli_query($conn, $sql2);
 
                 if ($res2)
                 {
-                    $_SESSION['add'] = "<div class='success'>Adviser Added Successfully</div>";
-                    header('location:'.SITEURL.'admin/manage-advisers.php');
+                    $_SESSION['add'] = "<div class='success'>Location Added Successfully</div>";
+                    header('location:'.SITEURL.'manage-locations.php');
                 }
-                else 
+                else
                 {
-                    $_SESSION['add'] = "<div class='error'>Failed to add Adviser</div>";
-                    header('location:'.SITEURL.'admin/add-adviser.php');
+                    $_SESSION['add'] = "<div class='error'>Failed to Add Location</div>";
+                    header('location:'.SITEURL.'manage-locations.php');
                 }
             }
-        }
-        ?>
+        
+        
+        } ?>
+        
     </div>
 </div>
 
