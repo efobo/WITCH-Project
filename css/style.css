@@ -1,124 +1,93 @@
-
-/* css for All */
 * {
-    margin: 0 0;
-    padding: 0 0;
-    /*font-family:'Monotype Corsiva';*/
-    font-family: 'Century Gothic';
+    margin: 0;
+    padding: 0;
+    font-family: 'Century Gothic';;
 }
-.container{
+
+.wrapper {
+    padding: 1%;
     width: 80%;
     margin: 0 auto;
-    padding: 1%;
 }
 
-.text-right{
-    text-align: right;
-}
-
-.text-center{
+.text-center {
     text-align: center;
 }
 
-.text-white {
-    color: white;
-    
-}
-
-.darkred-hover:hover{
-    background-color: darkred;
-    border: 5px solid darkred;
-    
-}
-
-.grey-bg {
-    background-color: grey;
-    border: 5px solid grey;
-    border-radius: 5px;
-}
-
-
-.clearfix
-{
-    clear: both;
+.clearfix {
     float: none;
+    clear: both;
 }
 
-a {
-    color: black;
-    text-decoration: none;
+.tbl-full {
+    width: 100%;
 }
 
-a:hover{
-    color: grey;
+.tbl-30 {
+    width: 30%;
 }
 
-.btn {
+table tr th {
+    border-bottom: 1px solid black;
     padding: 1%;
-    border:none;
-    font-size: 1rem;
-    border-radius: 5px;
+    text-align: left;
+}
+
+table tr td {
+    padding: 1%;
 }
 
 .btn-primary {
     background-color: black;
     color: white;
     cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .btn-primary:hover{
+    background-color: #3C3C3C;
+}
+
+.btn-secondary {
+    background-color: #FF81D2;
     color: white;
-    background-color: grey;
+    cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-h2 {
-    color: darkred;
-    font-size: 2rem;
-    font-family:'Monotype Corsiva';
+.btn-secondary:hover{
+    
+    color:lightgrey;
 }
 
-h3 {
-    font-size: 1.5rem;
-    font-family:'Monotype Corsiva';
+.btn-danger {
+    background-color: #159BA7;
+    color: white;
+    cursor: pointer;
+    padding: 1%;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.float-container {
-    position: relative;
+.btn-danger:hover{
+    color:lightgrey;
 }
 
-.float-text {
-    position: absolute;
-    bottom: 50px;
-    left: 40%;
+.success{
+    color: green;
 }
 
 .error {
-    padding: 2%;
-    color: red;
+    color:red;
 }
 
-.success {
-    padding: 2%;
-    color:green;
-}
-
-/* css for navbar section */
-.logo{
-    width:10%;
-    float: left;
-    padding: 1%;
-}
-
-.img-responsive{
-    width: 100%;
-}
-
-.img-curve {
-    border-radius: 15px;
-}
-
-.menu{
-    line-height: 60px;
+/* css for Menu*/
+.menu {
+    border-bottom: 1px solid grey;
 }
 
 .menu ul {
@@ -127,215 +96,78 @@ h3 {
 
 .menu ul li {
     display: inline;
+    align-items: center;
     padding: 1%;
-    font-weight: bold; 
-    width: 5px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.menu ul li a:hover {
+    color: grey;
+}
+
+/* css for Main-Content*/
+.main-content{
+    background-color:#FDD6F3;
+    padding: 3% 0;
 }
 
 
-/* css for food search section */
-
-.food-search-box {
-    width: 50%;
-    margin:0 auto;
-    padding: 1%;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Century Gothic';
-}
-
-.food-search-box a {
-    font-family: 'Century Gothic';
-}
-
-.food-search-box h2 {
-    font-family: 'Century Gothic';
-}
-
-.food-search{
-    background-image: url(../img/bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 7% 0;
-}
-
-.food-search input[type="search"] {
-    width: 50%;
-    padding: 1%;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-}
-
-
-
-/* css for Categories */
-.categories{
-    padding: 4% 0;
-}
-
-.box-3 {
-    width: 28%;
-    float: left;
-    margin: 2%;
-}
-
-
-/* css for food menu */
-.food-menu{
-    background-color: lightgrey;
-    padding: 4%;
-    
-}
-
-.food-menu-box {
-    width: 43%;
+.col-3 {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    width: 27%;
     margin: 1%;
+    background-color: white;
+    padding: 2%;
+}
+
+.col-2 {
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    margin: 1%;
+    width: 42%;
+    background-color: white;
+    padding: 2%;
+}
+
+a:active, /* активная/посещенная ссылка */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+    color: grey;
+}
+
+/* css for Footer  */
+.footer {
+    background-color: #D5E6FA;
+    color: black;
+}
+
+
+/* css for Login */
+.login {
+    border: 1px solid grey;
+    width: 20%;
+    margin: 10% auto;
+    padding: 2%;
+}
+
+/* css for news */
+.news-box {
+    width: 94%;
+    margin-bottom: 1%;
     padding: 2%;
     float: left;
     background-color: white;
-    border-radius: 15px;
-    
-}
-
-.food-menu-img {
-    width: 20%;
-    float: left;
-}
-
-.food-menu-desc {
-    width: 70%;
-    float: left;
-    margin-left: 8%;
-    
-}
-
-.food-menu-desc h4 {
-    font-family:'Monotype Corsiva';
-}
-
-.food-menu-desc p {
-    font-family:'Monotype Corsiva';
-}
-
-.food-menu-desc a {
-    font-family:'Monotype Corsiva';
-}
-
-.food-price{
-    font-size: 1.2rem;
-    margin: 2% 0;
-}
-
-.food-detail {
-    font-size: 1rem;
-    color: grey;
-
-}
-
-/* css for Social */
-.social ul {
-    list-style-type: none;
-}
-
-
-.social ul li {
-    display: inline;
-    padding: 1%;
-}
-
-.footer{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-
-/* css for Order Section */
-.order{
-    width: 50%;
-    margin: 0 auto;
-}
-.input-responsive{
-    width: 96%;
-    padding: 1%;
-    margin-bottom: 3%;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-.order-label{
-    margin-bottom: 1%; 
-    font-weight: bold;
-}
-.darkred-bg {
-    background-color: darkred;
-    border: 5px solid darkred;
-    border-radius: 5px;
-}
-
-.order-area{
-    background-color: lightgrey;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 7% 0;
-}
-
-
-
-/* css for Mobile Size or Smaller Screen */
-
-@media only screen and (max-width:768px){
-    .logo{
-        width: 80%;
-        float: none;
-        margin: 1% auto;
-    }
-
-    .menu ul{
-        text-align: center;
-    }
-
-    .food-search input[type="search"]{
-        width: 90%;
-        padding: 2%;
-        margin-bottom: 3%;
-    }
-
-    .btn{
-        width: 91%;
-        padding: 2%;
-    }
-
-    .food-search{
-        padding: 10% 0;
-    }
-
-    .categories{
-        padding: 20% 0;
-    }
-    h2{
-        margin-bottom: 10%;
-    }
-    .box-3{
-        width: 100%;
-        margin: 4% auto;
-    }
-
-    .food-menu{
-        padding: 20% 0;
-    }
-
-    .food-menu-box{
-        width: 90%;
-        padding: 5%;
-        margin-bottom: 5%;
-    }
-    .social{
-        padding: 5% 0;
-    }
-    .order{
-        width: 100%;
-    }
+    border-radius: 10px;
 }
