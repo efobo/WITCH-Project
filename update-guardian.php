@@ -53,7 +53,7 @@
                 <tr>
                     <td>Name: </td>
                     <td>
-                        <input type="text" name="name" value="<?php echo $name; ?>">
+                        <input type="text" name="name" maxlength="100" value="<?php echo $name; ?>">
                     </td>
                 </tr>
 
@@ -146,7 +146,7 @@
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="username" value="<?php echo $username; ?>">
+                        <input type="text" name="username" maxlength="100" value="<?php echo $username; ?>">
                     </td>
                 </tr>
 

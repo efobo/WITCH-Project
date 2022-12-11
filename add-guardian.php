@@ -46,7 +46,7 @@
                 <tr>
                     <td>Name: </td>
                     <td>
-                        <input type="text" name="name" placeholder="Name">
+                        <input type="text" name="name" maxlength="100" placeholder="Name">
                     </td>
                 </tr>
 
@@ -117,7 +117,7 @@
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="username" placeholder="username">
+                        <input type="text" name="username" maxlength="100" placeholder="username">
                     </td>
                 </tr>
 

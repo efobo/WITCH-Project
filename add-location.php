@@ -22,21 +22,21 @@
                 <tr>
                     <td>Name: </td>
                     <td>
-                        <input type="text" name="name" placeholder="Name of Location">
+                        <input type="text" name="name" maxlength="100" placeholder="Name of Location">
                     </td>
                 </tr>
 
                 <tr>
                     <td>X Coordinate: </td>
                     <td>
-                        <input type="number" name="x_cord" >
+                        <input type="number" name="x_cord" max="9999999999" >
                     </td>
                 </tr>
 
                 <tr>
                     <td>Y Coordinate: </td>
                     <td>
-                        <input type="number" name="y_cord" >
+                        <input type="number" name="y_cord" max="9999999999" >
                     </td>
                 </tr>
 

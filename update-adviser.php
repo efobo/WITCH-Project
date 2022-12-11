@@ -2,22 +2,22 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Update Location</h1>
+        <h1>Update Adviser</h1>
 
         <br><br>
 
         <?php 
-            if ($_SESSION['status'] != "adviser")
-            {
-                echo "<div>Sorry, you don't have access to change this data. Ask one of the advisers for this</div>";
-            }
-            else {
+        if ($_SESSION['status'] != "ruler")
+        {
+            echo "<div>Sorry, you don't have access to change this data. Ask one of the ruler for this</div>";
+        }
+        else {
         
             if (isset($_GET['id']))
             {
                 $id = $_GET['id'];
                 
-                $sql = "SELECT * FROM location WHERE id=$id";
+                $sql = "SELECT * FROM adviser WHERE id=$id";
 
                 $res = mysqli_query($conn, $sql);
 
@@ -29,18 +29,18 @@
 
                     $name = $row['name'];
                     $id_universe = $row['id_universe'];
-                    $x_cords = $row['x_cords'];
-                    $y_cords = $row['y_cords'];
+                    $username = $row['username'];
+                    $password = $row['password'];
                 }
                 else
                 {
-                    $_SESSION['no-location-found'] = "<div class='error'>Location Not Found</div>";
-                    header('location:'.SITEURL.'manage-locations.php');
+                    $_SESSION['no-adviser-found'] = "<div class='error'>Adviser Not Found</div>";
+                    header('location:'.SITEURL.'manage-advisers.php');
                 }
             }
             else
             {
-                header('location:'.SITEURL.'manage-locations.php');
+                header('location:'.SITEURL.'manage-advisers.php');
             }
         
         ?>
@@ -99,22 +99,22 @@
                 </tr>
 
                 <tr>
-                    <td>X Coordinate: </td>
+                    <td>Username: </td>
                     <td>
-                        <input type="number" name="x_cords" value="<?php echo $x_cords; ?>">
+                        <input type="text" name="username" maxlength="100" value="<?php echo $username; ?>">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Y Coordinate: </td>
+                    <td>New password: </td>
                     <td>
-                        <input type="number" name="y_cords" value="<?php echo $y_cords; ?>">
+                        <input type="password" name="password">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
-                        <input type="submit" name="submit" value="Update Location" class="btn-danger">
+                        <input type="submit" name="submit" value="Update Adviser" class="btn-danger">
                     </td>
                 </tr>
             </table>
@@ -128,31 +128,38 @@
             {
                 $id = $_POST['id'];
                 $name = mysqli_real_escape_string($conn, $_POST['name']);
-                $x_cords = $_POST['x_cords'];
-                $y_cords = $_POST['y_cords'];
+                $username = mysqli_real_escape_string($conn, $_POST['username']);
                 $id_universe = $_POST['id_universe'];
+                $password = $_POST['password'];
                 
 
 
-                $sql3 = "UPDATE location SET
+                $sql3 = "UPDATE adviser SET
                 name='$name',
-                x_cords=$x_cords,
-                y_cords=$y_cords,
+                username='$username',
                 id_universe='$id_universe'
-                WHERE id=$id";
+                ";
+
+                if ($password != "") 
+                {
+                    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+                    
+                    $sql3 .= ", password='$password'";
+                }
+                $sql3 .= " WHERE id=$id";
                 
 
                 $res3 = mysqli_query($conn, $sql3);
 
                 if ($res3)
                 {
-                    $_SESSION['update'] = "<div class='success'>Location Updated Successfully</div>";
-                    header('location:'.SITEURL.'manage-locations.php');
+                    $_SESSION['update'] = "<div class='success'>Adviser Updated Successfully</div>";
+                    header('location:'.SITEURL.'manage-advisers.php');
                 }
                 else
                 {
-                    $_SESSION['update'] = "<div class='error'>Failed to Update Location</div>";
-                    header('location:'.SITEURL.'manage-locations.php');
+                    $_SESSION['update'] = "<div class='error'>Failed to Update Adviser</div>";
+                    header('location:'.SITEURL.'manage-advisers.php');
                 }
                 
             }
